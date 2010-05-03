@@ -8,10 +8,11 @@
 </h:head>
 <body>
 <h:messages />
+<h:outputText value="#{bean1.helloWorld}" />
 
 <h:form id="personForm">
 	<p:commandLink action="#{personController.newPerson}"
-		value="Neues Profil" update="person" />
+		value="Neues Profil" />
 	<h:panelGrid columns="2" id="person"
 		rendered="#{personController.init}">
 		<h:outputLabel value="Vorname:" for="surname" />

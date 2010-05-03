@@ -1,18 +1,33 @@
 package de.metafinanz.campus.iam.controller;
 
+import java.io.Serializable;
+
 import javax.inject.Named;
+
+import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Scope;
 
 import de.metafinanz.campus.iam.entities.Person;
 
 @Named("personController")
-public class PersonControllerBean {
+public class PersonControllerBean implements Serializable {
 
-	private Person current;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7502391887385563727L;
+	private Person current = new Person();
+	private Logger log;
 
-	public Person newPerson() {
-		System.out.println("PersonControllerBean.newPerson()");
+	public PersonControllerBean() {
+		super();
+		this.log = Logger.getLogger(this.getClass());
+	}
+
+	public String newPerson() {
+		log.debug("PersonControllerBean.newPerson()");
 		current = new Person();
-		return getCurrent();
+		return "";
 	}
 
 	public Person getCurrent() {
@@ -20,7 +35,7 @@ public class PersonControllerBean {
 	}
 
 	public boolean isInit() {
-		System.out.println("PersonControllerBean.isInit() " + current!=null);
+		// log.debug("PersonControllerBean.isInit() " + current!=null);
 		return current != null;
 	}
 

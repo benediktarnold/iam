@@ -1,1 +1,132 @@
-<?xml version="1.0" encoding="UTF-8"?><file-systems application-name="iam-web" model-entity="FileSystems" VERSION="2.0.0" workspace-home="./src/main/webapp/WEB-INF"><file-system model-entity="FileSystemFolder" location="%workspace.home%" NAME="WEB-INF"/><file-system model-entity="FileSystemFolder" info="Content-Type=Web" location="%workspace.home%/.." NAME="WEB-ROOT"/><file-system model-entity="FileSystemFolder" location="%workspace.home%/../../resources" NAME="src"/><file-system model-entity="FileSystemFolder" location="%workspace.home%/lib" NAME="lib"/><file-system model-entity="FileSystemFolder" location="%workspace.home%/classes" NAME="classes"/><web model-entity="JstWeb" model-path="/web.xml" SERVLET_VERSION="2.4">  <module model-entity="WebJSFModule" model-path="/faces-config.xml"   root="WEB-ROOT" src="src" URI="/WEB-INF/faces-config.xml"/></web></file-systems>
+<?xml version="1.0" encoding="UTF-8"?>
+<file-systems VERSION="2.0.0" application-name="iam-web"
+ model-entity="FileSystems" workspace-home="./src/main/webapp/WEB-INF">
+ <file-system NAME="WEB-INF" location="%workspace.home%" model-entity="FileSystemFolder"/>
+ <file-system NAME="WEB-ROOT" info="Content-Type=Web"
+  location="%workspace.home%/.." model-entity="FileSystemFolder"/>
+ <file-system NAME="src" location="%workspace.home%/../../java" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib" location="%workspace.home%/lib" model-entity="FileSystemFolder"/>
+ <file-system NAME="classes" location="%workspace.home%/classes" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib-resources.jar"
+  location="C:\Programme\Java\jre6\lib\resources.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-dnsns.jar"
+  location="C:\Programme\Java\jre6\lib\ext\dnsns.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-localedata.jar"
+  location="C:\Programme\Java\jre6\lib\ext\localedata.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunjce_provider.jar"
+  location="C:\Programme\Java\jre6\lib\ext\sunjce_provider.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunmscapi.jar"
+  location="C:\Programme\Java\jre6\lib\ext\sunmscapi.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunpkcs11.jar"
+  location="C:\Programme\Java\jre6\lib\ext\sunpkcs11.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-log4j-1.2.14.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\log4j\log4j\1.2.14\log4j-1.2.14.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jcl-over-slf4j-1.5.8.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\slf4j\jcl-over-slf4j\1.5.8\jcl-over-slf4j-1.5.8.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-slf4j-api-1.5.8.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\slf4j\slf4j-api\1.5.8\slf4j-api-1.5.8.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-slf4j-log4j12-1.5.8.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\slf4j\slf4j-log4j12\1.5.8\slf4j-log4j12-1.5.8.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hsqldb-1.8.0.10.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\hsqldb\hsqldb\1.8.0.10\hsqldb-1.8.0.10.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-core-3.5.1-Final.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\hibernate\hibernate-core\3.5.1-Final\hibernate-core-3.5.1-Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-antlr-2.7.6.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\antlr\antlr\2.7.6\antlr-2.7.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-collections-3.1.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\commons-collections\commons-collections\3.1\commons-collections-3.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-dom4j-1.6.1.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-xml-apis-1.0.b2.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\xml-apis\xml-apis\1.0.b2\xml-apis-1.0.b2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jta-1.1.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\javax\transaction\jta\1.1\jta-1.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-entitymanager-3.5.1-Final.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\hibernate\hibernate-entitymanager\3.5.1-Final\hibernate-entitymanager-3.5.1-Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-annotations-3.5.1-Final.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\hibernate\hibernate-annotations\3.5.1-Final\hibernate-annotations-3.5.1-Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-commons-annotations-3.2.0.Final.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\hibernate\hibernate-commons-annotations\3.2.0.Final\hibernate-commons-annotations-3.2.0.Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-jpa-2.0-api-1.0.0.Final.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.0-api\1.0.0.Final\hibernate-jpa-2.0-api-1.0.0.Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-cglib-2.2.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\cglib\cglib\2.2\cglib-2.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-asm-3.1.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\asm\asm\3.1\asm-3.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-javassist-3.9.0.GA.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\javassist\javassist\3.9.0.GA\javassist-3.9.0.GA.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-javax.inject-1.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-spring-context-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\spring-context\3.0.2.RELEASE\spring-context-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-spring-aop-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\spring-aop\3.0.2.RELEASE\spring-aop-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-aopalliance-1.0.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-spring-asm-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\spring-asm\3.0.2.RELEASE\spring-asm-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-spring-beans-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\spring-beans\3.0.2.RELEASE\spring-beans-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-spring-core-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\spring-core\3.0.2.RELEASE\spring-core-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-spring-expression-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\spring-expression\3.0.2.RELEASE\spring-expression-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.orm-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.orm\3.0.2.RELEASE\org.springframework.orm-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.beans-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.beans\3.0.2.RELEASE\org.springframework.beans-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.core-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.core\3.0.2.RELEASE\org.springframework.core-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.asm-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.asm\3.0.2.RELEASE\org.springframework.asm-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.jdbc-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.jdbc\3.0.2.RELEASE\org.springframework.jdbc-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-org.springframework.transaction-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.transaction\3.0.2.RELEASE\org.springframework.transaction-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.aopalliance-1.0.0.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\aopalliance\com.springsource.org.aopalliance\1.0.0\com.springsource.org.aopalliance-1.0.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.aop-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.aop\3.0.2.RELEASE\org.springframework.aop-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.context-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.context\3.0.2.RELEASE\org.springframework.context-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-org.springframework.expression-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.expression\3.0.2.RELEASE\org.springframework.expression-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.web-3.0.2.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.web\3.0.2.RELEASE\org.springframework.web-3.0.2.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-api-2.0.0-RC.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\javax\faces\jsf-api\2.0.0-RC\jsf-api-2.0.0-RC.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-impl-2.0.0-RC.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\javax\faces\jsf-impl\2.0.0-RC\jsf-impl-2.0.0-RC.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-servlet-api-2.5.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\javax\servlet\servlet-api\2.5\servlet-api-2.5.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-junit-4.7.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\junit\junit\4.7\junit-4.7.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-el-api-2.2.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\javax\el\el-api\2.2\el-api-2.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-el-impl-2.2.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\glassfish\web\el-impl\2.2\el-impl-2.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="src-1"
+  location="%workspace.home%/../../../test/java" model-entity="FileSystemFolder"/>
+ <file-system NAME="src-2" location="%workspace.home%/../../resources" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib-org.springframework.webflow-2.0.9.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\webflow\org.springframework.webflow\2.0.9.RELEASE\org.springframework.webflow-2.0.9.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.apache.commons.logging-1.1.1.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\apache\commons\com.springsource.org.apache.commons.logging\1.1.1\com.springsource.org.apache.commons.logging-1.1.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.web.servlet-2.5.6.SEC01.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\org.springframework.web.servlet\2.5.6.SEC01\org.springframework.web.servlet-2.5.6.SEC01.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.binding-2.0.9.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\webflow\org.springframework.binding\2.0.9.RELEASE\org.springframework.binding-2.0.9.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.js-2.0.9.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\webflow\org.springframework.js\2.0.9.RELEASE\org.springframework.js-2.0.9.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.faces-2.0.9.RELEASE.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\springframework\webflow\org.springframework.faces\2.0.9.RELEASE\org.springframework.faces-2.0.9.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-primefaces-2.0.2-SNAPSHOT.jar"
+  location="C:\Dokumente und Einstellungen\BAD\.m2\repository\org\primefaces\primefaces\2.0.2-SNAPSHOT\primefaces-2.0.2-SNAPSHOT.jar" model-entity="FileSystemJar"/>
+ <web SERVLET_VERSION="2.4" model-entity="JstWeb" model-path="/web.xml">
+  <module URI="/WEB-INF/faces-config.xml" model-entity="WebJSFModule"
+   model-path="/faces-config.xml" src="src" web-root="WEB-ROOT"/>
+ </web>
+</file-systems>

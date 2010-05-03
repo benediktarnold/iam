@@ -20,8 +20,8 @@ public class PersonControllerBeanTest {
 	
 	@Test
 	public void testNewPerson(){
-		
-		Person person = controller.newPerson();
+		controller.newPerson();
+		Person person = controller.getCurrent();
 		Assert.assertNotNull(person);
 		
 		Assert.assertNotSame(person, controller.newPerson());
@@ -31,8 +31,8 @@ public class PersonControllerBeanTest {
 	public void testGetCurrent(){
 		Person current = controller.getCurrent();
 		Assert.assertNull(current);
-		
-		Person newPerson = controller.newPerson();
+		controller.newPerson();
+		Person newPerson = controller.getCurrent();
 		current = controller.getCurrent();
 		Assert.assertNotNull(current);
 		Assert.assertSame(newPerson, current);
