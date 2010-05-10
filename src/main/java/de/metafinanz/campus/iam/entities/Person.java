@@ -1,18 +1,27 @@
 package de.metafinanz.campus.iam.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
-public class Person {
+public class Person implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 466881039286494411L;
 	private Long id;
-	private String nickname;
+	private String nickname = "";
 
-	private String lastname;
-	private String surname;
+	private String lastname = "";
+	private String surname = "";
+	
+	private String hobbies;
 
 	@Column(unique = true)
 	public String getNickname() {
@@ -47,6 +56,15 @@ public class Person {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public void setHobbies(String hobbies) {
+		this.hobbies = hobbies;
+	}
+
+	@Lob
+	public String getHobbies() {
+		return hobbies;
 	}
 
 }

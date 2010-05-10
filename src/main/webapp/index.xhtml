@@ -11,9 +11,41 @@
 	</h:head>
 	<body>
 	<h:messages />
-	<h:outputText value="#{bean1.helloWorld}" />
+	´
+	<h:form>
+		<p:commandLink action="#{personController.newPerson()}"
+			onclick="dlg.show()">Neues Profil</p:commandLink>
+	</h:form>
+	<p:dialog header="Nickname" width="300px" widgetVar="dlg"
+		visible="false">
+		<h:form>
+
+			<h:panelGrid columns="2" style="margin-bottom:10px">
+				<h:outputLabel for="nickname" value="Nickname:" />
+				<h:inputText id="nickname"
+					value="#{personController.current.nickname}" />
+
+				<p:commandButton value="Abbrechen" type="reset" />
+				<p:commandButton value="Anlegen" update=":personForm"
+					oncomplete="dlg.hide();" />
+			</h:panelGrid>
+
+		</h:form>
+	</p:dialog>
 	<h:form id="personForm">
-		<p:commandLink action="#{personControllerBean.newPerson}">Neues Profil</p:commandLink>
+
+		<p:panel header="#{personController.current.nickname}" rendered="#{personController.init}">
+		
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Vorname:" for="surname" />
+				<h:inputText id="surname"
+					value="#{personController.current.surname}" />
+				<h:outputLabel value="Nachname:" for="lastname" />
+				<h:inputText id="lastname"
+					value="#{personController.current.lastname}" />
+			</h:panelGrid>
+			<p:commandButton label="Update" />
+		</p:panel>
 	</h:form>
 	</body>
 </f:view>

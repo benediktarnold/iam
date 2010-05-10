@@ -29,6 +29,10 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
+	<bean id="facesContext" scope="request" class="javax.faces.context.FacesContext"
+		factory-method="getCurrentInstance">
+	</bean>
+
 
 
 
