@@ -2,6 +2,7 @@ package de.metafinanz.campus.iam.controller;
 
 import java.io.Serializable;
 
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
@@ -30,13 +31,18 @@ public class PersonControllerBean implements Serializable {
 		return "";
 	}
 
-	public Person getCurrent() {
-		return current;
-	}
-
-	public boolean isInit() {
-		// log.debug("PersonControllerBean.isInit() " + current!=null);
-		return current != null;
-	}
+//	public Person getCurrent() {
+//		return current;
+//	}
+//
+//	public boolean isInit() {
+//		// log.debug("PersonControllerBean.isInit() " + current!=null);
+//		return current != null;
+//	}
+//	
+//	public void newPersonAction(ActionEvent e){
+//		System.out.println("PersonControllerBean.newPersonAction()");
+//		this.newPerson();
+//	}
 
 }

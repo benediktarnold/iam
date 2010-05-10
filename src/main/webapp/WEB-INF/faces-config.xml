@@ -7,4 +7,9 @@
 	<application>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 	</application>
+	<managed-bean>
+		<managed-bean-name>personControllerBean</managed-bean-name>
+		<managed-bean-class>de.metafinanz.campus.iam.controller.PersonControllerBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
 </faces-config>

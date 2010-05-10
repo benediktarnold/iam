@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>PrimeFaces Test</title>
-</h:head>
-<body>
-<h:messages />
-<h:outputText value="#{bean1.helloWorld}" />
-
-<h:form id="personForm">
-	<p:commandLink action="#{personController.newPerson}"
-		value="Neues Profil" />
-	<h:panelGrid columns="2" id="person"
-		rendered="#{personController.init}">
-		<h:outputLabel value="Vorname:" for="surname" />
-		<h:inputText id="surname" value="#{personController.current.surname}" />
-
-		<h:outputLabel value="Name:" for="name" />
-		<h:inputText id="name" value="#{personController.current.lastname}" />
-	</h:panelGrid>
-</h:form>
-</body>
+<f:view>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>PrimeFaces Test</title>
+	</h:head>
+	<body>
+	<h:messages />
+	<h:outputText value="#{bean1.helloWorld}" />
+	<h:form id="personForm">
+		<p:commandLink action="#{personControllerBean.newPerson}">Neues Profil</p:commandLink>
+	</h:form>
+	</body>
+</f:view>
 </html>
+
