@@ -35,8 +35,7 @@ public class PersonControllerBeanTest {
 		em.persist(isA(Person.class));
 		expectLastCall().times(count);
 
-		facesContext.addMessage(isA(String.class), (FacesMessage) notNull());
-		expectLastCall().times(count);
+		
 	}
 
 	@Test

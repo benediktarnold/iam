@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Scope;
 import de.metafinanz.campus.iam.entities.Person;
 
 @Named("personController")
-@Scope("session")
+@Scope("view")
 public class PersonControllerBean implements Serializable {
 
 	/**
@@ -36,7 +36,6 @@ public class PersonControllerBean implements Serializable {
 		log.debug("PersonControllerBean.newPerson()");
 		current = new Person();
 		entityManager.persist(current);
-		facesContext.addMessage("", new FacesMessage("Profil angelegt"));
 		return "";
 	}
 

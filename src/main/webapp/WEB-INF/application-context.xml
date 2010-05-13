@@ -28,10 +28,23 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
+	
+	<bean id="auditReader" class="org.hibernate.envers.AuditReaderFactory"></bean>
 
-	<bean id="facesContext" scope="request" class="javax.faces.context.FacesContext"
+	<bean id="facesContext" scope="view" class="javax.faces.context.FacesContext"
 		factory-method="getCurrentInstance">
 	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="view">
+                    <bean class="org.primefaces.spring.scope.ViewScope"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+	
 
 
 
