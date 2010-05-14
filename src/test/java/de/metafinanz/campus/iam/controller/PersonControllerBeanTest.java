@@ -11,7 +11,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.metafinanz.campus.iam.entities.Person;
+import de.metafinanz.campus.iam.entities.WikiPage;
 
 public class PersonControllerBeanTest {
 
@@ -32,11 +32,11 @@ public class PersonControllerBeanTest {
 	}
 
 	private void expectPersist(int count) {
-		em.persist(isA(Person.class));
+		em.persist(isA(WikiPage.class));
 		expectLastCall().times(count);
 
-		facesContext.addMessage(isA(String.class), (FacesMessage) notNull());
-		expectLastCall().times(count);
+//		facesContext.addMessage(isA(String.class), (FacesMessage) notNull());
+//		expectLastCall().times(count);
 	}
 
 	@Test
@@ -44,11 +44,11 @@ public class PersonControllerBeanTest {
 		expectPersist(2);
 		mockSupport.replayAll();
 
-		controller.newPerson();
+		controller.newPage();
 
-		Person person = controller.getCurrent();
+		WikiPage person = controller.getCurrent();
 		Assert.assertNotNull(person);
-		Assert.assertNotSame(person, controller.newPerson());
+		Assert.assertNotSame(person, controller.newPage());
 		mockSupport.verifyAll();
 	}
 
@@ -57,7 +57,7 @@ public class PersonControllerBeanTest {
 		expectPersist(1);
 		mockSupport.replayAll();
 		Assert.assertFalse(controller.isInit());
-		controller.newPerson();
+		controller.newPage();
 		mockSupport.verifyAll();
 		Assert.assertTrue(controller.isInit());
 	}

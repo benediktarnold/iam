@@ -11,39 +11,31 @@
 	</h:head>
 	<body>
 	<h:messages />
-	´
 	<h:form>
-		<p:commandLink action="#{personController.newPerson()}"
-			onclick="dlg.show()">Neues Profil</p:commandLink>
+		<p:commandLink action="#{pageController.newPage()}"
+			onclick="dlg.show()">Neues Seite</p:commandLink>
 	</h:form>
-	<p:dialog header="Nickname" width="300px" widgetVar="dlg"
+	<p:dialog header="Titel" width="300px" widgetVar="dlg"
 		visible="false">
 		<h:form>
 
 			<h:panelGrid columns="2" style="margin-bottom:10px">
-				<h:outputLabel for="nickname" value="Nickname:" />
-				<h:inputText id="nickname"
-					value="#{personController.current.nickname}" />
+				<h:outputLabel for="title" value="Titel:" />
+				<h:inputText id="title"
+					value="#{pageController.current.title}" />
 
 				<p:commandButton value="Abbrechen" type="reset" />
-				<p:commandButton value="Anlegen" update=":personForm"
+				<p:commandButton value="Anlegen" update=":pageForm"
 					oncomplete="dlg.hide();" />
 			</h:panelGrid>
 
 		</h:form>
 	</p:dialog>
-	<h:form id="personForm">
+	<h:form id="pageForm">
 
-		<p:panel header="#{personController.current.nickname}" rendered="#{personController.init}">
+		<p:panel header="#{pageController.current.title}" rendered="#{pageController.init}">
 		
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Vorname:" for="surname" />
-				<h:inputText id="surname"
-					value="#{personController.current.surname}" />
-				<h:outputLabel value="Nachname:" for="lastname" />
-				<h:inputText id="lastname"
-					value="#{personController.current.lastname}" />
-			</h:panelGrid>
+			<h:inputTextarea value="#{pageController.current.content}" />
 			<p:commandButton label="Update" />
 		</p:panel>
 	</h:form>

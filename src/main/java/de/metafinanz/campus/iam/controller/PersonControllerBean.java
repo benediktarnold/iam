@@ -12,9 +12,9 @@ import javax.persistence.PersistenceContext;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 
-import de.metafinanz.campus.iam.entities.Person;
+import de.metafinanz.campus.iam.entities.WikiPage;
 
-@Named("personController")
+@Named("pageController")
 @Scope("session")
 public class PersonControllerBean implements Serializable {
 
@@ -22,7 +22,7 @@ public class PersonControllerBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 7502391887385563727L;
-	private Person current;
+	private WikiPage current;
 	private Logger log;
 	private EntityManager entityManager;
 	private FacesContext facesContext;
@@ -32,15 +32,13 @@ public class PersonControllerBean implements Serializable {
 		this.log = Logger.getLogger(this.getClass());
 	}
 
-	public String newPerson() {
-		log.debug("PersonControllerBean.newPerson()");
-		current = new Person();
+	public String newPage() {
+		current = new WikiPage();
 		entityManager.persist(current);
-		facesContext.addMessage("", new FacesMessage("Profil angelegt"));
 		return "";
 	}
 
-	public Person getCurrent() {
+	public WikiPage getCurrent() {
 		return current;
 	}
 
