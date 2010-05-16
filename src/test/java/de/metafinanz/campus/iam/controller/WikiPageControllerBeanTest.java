@@ -1,9 +1,10 @@
 package de.metafinanz.campus.iam.controller;
 
-import static org.easymock.classextension.EasyMock.*;
+import static org.easymock.EasyMock.expectLastCall;
+import static org.easymock.EasyMock.isA;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.easymock.classextension.EasyMockSupport;
@@ -13,30 +14,27 @@ import org.junit.Test;
 
 import de.metafinanz.campus.iam.entities.WikiPage;
 
-public class PersonControllerBeanTest {
+public class WikiPageControllerBeanTest {
 
-	private PersonControllerBean controller;
+	private WikiPageControllerBean controller;
 	private EasyMockSupport mockSupport = new EasyMockSupport();
 	private EntityManager em;
-	private FacesContext facesContext;
 
 	@Before
 	public void init() {
 		mockSupport.resetAll();
-		controller = new PersonControllerBean();
+		controller = new WikiPageControllerBean();
 		em = mockSupport.createMock(EntityManager.class);
 		controller.setEntityManager(em);
 
-		facesContext = mockSupport.createMock(FacesContext.class);
-		controller.setFacesContext(facesContext);
+		RevisionController revisionController = mockSupport
+				.createMock(RevisionController.class);
+		controller.setRevisionController(revisionController);
 	}
 
 	private void expectPersist(int count) {
 		em.persist(isA(WikiPage.class));
 		expectLastCall().times(count);
-
-//		facesContext.addMessage(isA(String.class), (FacesMessage) notNull());
-//		expectLastCall().times(count);
 	}
 
 	@Test
@@ -60,5 +58,10 @@ public class PersonControllerBeanTest {
 		controller.newPage();
 		mockSupport.verifyAll();
 		Assert.assertTrue(controller.isInit());
+	}
+
+	@Test
+	public void testGetRevisions() {
+		List<?> revisions = controller.getRevisions();
 	}
 }

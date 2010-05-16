@@ -12,33 +12,70 @@
 	<body>
 	<h:messages />
 	<h:form>
-		<p:commandLink action="#{pageController.newPage()}"
-			onclick="dlg.show()">Neues Seite</p:commandLink>
+		<p:commandLink action="#{pageController.newPage()}" update=":tabPanel">Neue Seite</p:commandLink>
 	</h:form>
-	<p:dialog header="Titel" width="300px" widgetVar="dlg"
-		visible="false">
-		<h:form>
 
-			<h:panelGrid columns="2" style="margin-bottom:10px">
-				<h:outputLabel for="title" value="Titel:" />
-				<h:inputText id="title"
-					value="#{pageController.current.title}" />
+	<p:tabView id="tabPanel" binding="#{pageController.tabView}">
 
-				<p:commandButton value="Abbrechen" type="reset" />
-				<p:commandButton value="Anlegen" update=":pageForm"
-					oncomplete="dlg.hide();" />
-			</h:panelGrid>
+		<p:tab title="View">
+			<h1><h:outputText value="#{pageController.current.title}" /></h1>
+			<p><h:outputText value="#{pageController.current.content}"
+				escape="false" converter="brConverter" /></p>
+		</p:tab>
 
-		</h:form>
-	</p:dialog>
-	<h:form id="pageForm">
+		<p:tab title="Edit" rendered="#{!pageController.historic}">
+			<h:form id="editForm">
+				<h:panelGrid columns="1" width="100%">
+					<h:inputText value="#{pageController.current.title}"
+						style="width: 100%" />
+					<h:inputTextarea value="#{pageController.current.content}"
+						style="width: 100%" rows="20" />
+					<p:commandButton label="Update" action="#{pageController.save()}"
+						update=":tabPanel">
+						<f:param name="id" value="#{param['id']}" />
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</p:tab>
 
-		<p:panel header="#{pageController.current.title}" rendered="#{pageController.init}">
-		
-			<h:inputTextarea value="#{pageController.current.content}" />
-			<p:commandButton label="Update" />
-		</p:panel>
-	</h:form>
+		<p:tab title="Änderungen" rendered="#{!pageController.historic}">
+			<h:form>
+				<h:dataTable var="rev" value="#{pageController.revisions}">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Revision" />
+						</f:facet>
+						<h:outputLink value="index.jsf">#{rev[1].id}
+							<f:param name="id" value="#{rev[0].id}" />
+							<f:param name="rev" value="#{rev[1].id}" />
+						</h:outputLink>
+
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Titel" />
+						</f:facet>
+						<h:outputText value="#{rev[0].title}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Datum" />
+						</f:facet>
+						<h:outputText value="#{rev[1].revisionDate}">
+							<f:convertDateTime type="both" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Änderung" />
+						</f:facet>
+						<h:outputText value="#{rev[2]}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</p:tab>
+	</p:tabView>
+
 	</body>
 </f:view>
 </html>
