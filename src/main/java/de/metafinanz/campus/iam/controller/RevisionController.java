@@ -10,10 +10,12 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditEntity;
+import org.springframework.context.annotation.Scope;
 
 import de.metafinanz.campus.iam.entities.WikiPage;
 
 @Named("revisionController")
+@Scope("request")
 public class RevisionController {
 
 	private EntityManager entityManager;
@@ -32,6 +34,12 @@ public class RevisionController {
 					AuditEntity.revisionNumber().desc()).getResultList();
 		}
 		return new LinkedList<Object[]>();
+	}
+
+	public List<?> queryForLatestChanges() {
+		return getAuditReader().createQuery().forRevisionsOfEntity(
+				WikiPage.class, false, false).addOrder(
+				AuditEntity.revisionNumber().desc()).getResultList();
 	}
 
 	private AuditReader getAuditReader() {

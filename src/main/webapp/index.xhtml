@@ -12,69 +12,24 @@
 	<body>
 	<h:messages />
 	<h:form>
-		<p:commandLink action="#{pageController.newPage()}" update=":tabPanel">Neue Seite</p:commandLink>
+		<h:commandLink value="Neue Seite" action="#{pageCreator.newPage()}" />
 	</h:form>
 
-	<p:tabView id="tabPanel" binding="#{pageController.tabView}">
-
-		<p:tab title="View">
-			<h1><h:outputText value="#{pageController.current.title}" /></h1>
-			<p><h:outputText value="#{pageController.current.content}"
-				escape="false" converter="brConverter" /></p>
-		</p:tab>
-
-		<p:tab title="Edit" rendered="#{!pageController.historic}">
-			<h:form id="editForm">
-				<h:panelGrid columns="1" width="100%">
-					<h:inputText value="#{pageController.current.title}"
-						style="width: 100%" />
-					<h:inputTextarea value="#{pageController.current.content}"
-						style="width: 100%" rows="20" />
-					<p:commandButton label="Update" action="#{pageController.save()}"
-						update=":tabPanel">
-						<f:param name="id" value="#{param['id']}" />
-					</p:commandButton>
-				</h:panelGrid>
-			</h:form>
-		</p:tab>
-
-		<p:tab title="Änderungen" rendered="#{!pageController.historic}">
-			<h:form>
-				<h:dataTable var="rev" value="#{pageController.revisions}">
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Revision" />
-						</f:facet>
-						<h:outputLink value="index.jsf">#{rev[1].id}
-							<f:param name="id" value="#{rev[0].id}" />
-							<f:param name="rev" value="#{rev[1].id}" />
-						</h:outputLink>
-
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Titel" />
-						</f:facet>
-						<h:outputText value="#{rev[0].title}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Datum" />
-						</f:facet>
-						<h:outputText value="#{rev[1].revisionDate}">
-							<f:convertDateTime type="both" />
-						</h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Änderung" />
-						</f:facet>
-						<h:outputText value="#{rev[2]}" />
-					</h:column>
-				</h:dataTable>
-			</h:form>
-		</p:tab>
-	</p:tabView>
+	<h:dataTable var="rev" value="#{recentChanges.list}">
+		<h:column>
+			<h:link outcome="page">#{rev[0].id}
+				<f:param name="id" value="#{rev[0].id}" />
+			</h:link>
+		</h:column>
+		<h:column>
+			<h:outputText value="#{rev[0].title}" />
+		</h:column>
+		<h:column>
+			<h:outputText value="#{rev[1].revisionDate}">
+				<f:convertDateTime type="both" />
+			</h:outputText>
+		</h:column>
+	</h:dataTable>
 
 	</body>
 </f:view>

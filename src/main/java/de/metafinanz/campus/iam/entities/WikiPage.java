@@ -18,6 +18,7 @@ public class WikiPage implements Serializable {
 	 */
 	private static final long serialVersionUID = 466881039286494411L;
 	private Long id;
+	private String magneticLink;
 	private String title = "";
 
 	private String content;
@@ -52,6 +53,14 @@ public class WikiPage implements Serializable {
 	@Override
 	public String toString() {
 		return "Wikipage: "+ getId()+" Title: " + getTitle();
+	}
+
+	protected void setMagneticLink(String magneticLink) {
+		this.magneticLink = magneticLink;
+	}
+
+	public String getMagneticLink() {
+		return magneticLink;
 	}
 
 }

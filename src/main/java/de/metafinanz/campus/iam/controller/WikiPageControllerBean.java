@@ -69,7 +69,7 @@ public class WikiPageControllerBean implements Serializable {
 		log.info("WikiPageControllerBean.newPage()");
 		current = new WikiPage();
 		entityManager.persist(current);
-		return "";
+		return "page";
 	}
 
 	public String save() {
@@ -86,11 +86,14 @@ public class WikiPageControllerBean implements Serializable {
 	public boolean isInit() {
 		return current != null;
 	}
+	
+	public boolean hasTitle(){
+		return !current.getTitle().equals("");
+	}
 
 	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
 		this.entityManager = em;
-
 	}
 
 	@Inject
