@@ -4,18 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.component.UIComponent;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.event.ValueChangeListener;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
-import org.primefaces.component.editor.Editor;
 import org.primefaces.component.tabview.TabView;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -60,10 +54,9 @@ public class WikiPageControllerBean implements Serializable {
 
 	@PostConstruct
 	public void initialize() {
-		if(isHistoric()){
+		if (isHistoric()) {
 			current = revisionController.getRevision(currentId, revision);
-		}
-		else if(this.currentId != null){
+		} else if (this.currentId != null) {
 			current = entityManager.find(WikiPage.class, currentId);
 		}
 	}
@@ -106,10 +99,7 @@ public class WikiPageControllerBean implements Serializable {
 	}
 
 	public List<?> getRevisions() {
-		if (queryForRevisions == null) {
-			queryForRevisions = revisionController.queryForRevisions(current);
-		}
-		return queryForRevisions;
+		return revisionController.queryForRevisions(current);
 	}
 
 	public void setTabView(TabView tabView) {
