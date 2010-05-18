@@ -1,5 +1,6 @@
 package de.metafinanz.campus.iam.controller;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,8 +17,12 @@ import de.metafinanz.campus.iam.entities.WikiPage;
 
 @Named("revisionController")
 @Scope("request")
-public class RevisionController {
+public class RevisionController implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3859738439773989052L;
 	private EntityManager entityManager;
 
 	@PersistenceContext
@@ -37,9 +42,10 @@ public class RevisionController {
 	}
 
 	public List<?> queryForLatestChanges() {
-		return getAuditReader().createQuery().forRevisionsOfEntity(
+		List resultList = getAuditReader().createQuery().forRevisionsOfEntity(
 				WikiPage.class, false, false).addOrder(
 				AuditEntity.revisionNumber().desc()).getResultList();
+		return resultList;
 	}
 
 	private AuditReader getAuditReader() {
@@ -47,7 +53,21 @@ public class RevisionController {
 		return auditReader;
 	}
 
+	public Long getNumberOfRevisions() {
+		Long result = (Long) getAuditReader().createQuery().forRevisionsOfEntity(
+				WikiPage.class, true, false).addProjection(
+				AuditEntity.id().count("id")).getSingleResult();
+		return result;
+	}
+
 	public WikiPage getRevision(Long liveId, Integer rev) {
 		return getAuditReader().find(WikiPage.class, liveId, rev);
+	}
+
+	public WikiPage getRevision(String magnet, Integer rev) {
+		return (WikiPage) getAuditReader().createQuery().forRevisionsOfEntity(
+				WikiPage.class, true, true).add(
+				AuditEntity.revisionNumber().eq(rev)).add(
+				AuditEntity.property("magnet").eq(magnet)).getSingleResult();
 	}
 }

@@ -37,28 +37,6 @@ public class WikiPageControllerBeanTest {
 		expectLastCall().times(count);
 	}
 
-	@Test
-	public void testNewPerson() {
-		expectPersist(2);
-		mockSupport.replayAll();
-
-		controller.newPage();
-
-		WikiPage person = controller.getCurrent();
-		Assert.assertNotNull(person);
-		Assert.assertNotSame(person, controller.newPage());
-		mockSupport.verifyAll();
-	}
-
-	@Test
-	public void testIsInit() {
-		expectPersist(1);
-		mockSupport.replayAll();
-		Assert.assertFalse(controller.isInit());
-		controller.newPage();
-		mockSupport.verifyAll();
-		Assert.assertTrue(controller.isInit());
-	}
 
 	@Test
 	public void testGetRevisions() {

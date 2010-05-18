@@ -11,25 +11,56 @@
 	</h:head>
 	<body>
 	<h:messages />
-	<h:form>
-		<h:commandLink value="Neue Seite" action="#{pageCreator.newPage()}" />
-	</h:form>
 
-	<h:dataTable var="rev" value="#{recentChanges.list}">
-		<h:column>
-			<h:link outcome="page">#{rev[0].id}
-				<f:param name="id" value="#{rev[0].id}" />
-			</h:link>
-		</h:column>
-		<h:column>
-			<h:outputText value="#{rev[0].title}" />
-		</h:column>
-		<h:column>
-			<h:outputText value="#{rev[1].revisionDate}">
-				<f:convertDateTime type="both" />
-			</h:outputText>
-		</h:column>
-	</h:dataTable>
+	<p:breadCrumb style="width: 99%">
+		<p:menuitem label="Hauptseite">
+			<h:link outcome="index" />
+		</p:menuitem>
+		<p:menuitem>
+			<h:form>
+				<h:commandLink value="Seite anlegen"
+					action="#{pageCreator.newPage()}" />
+			</h:form>
+		</p:menuitem>
+	</p:breadCrumb>
+	<br />
+	<br />
+	<h:panelGrid columns="2">
+		<p:panel header="Änderungen">
+			<p:dataTable var="rev" value="#{recentChanges.list}">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Revision" />
+					</f:facet>
+					<h:link outcome="page">#{rev[1].id}
+				<f:param name="magnet" value="#{rev[0].magnet}" />
+						<f:param name="rev" value="#{rev[1].id}" />
+					</h:link>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Titel" />
+					</f:facet>
+					<h:link outcome="page">
+						<f:param name="magnet" value="#{rev[0].magnet}" />
+						<h:outputText value="#{rev[0].title}" />
+					</h:link>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Änderungsdatum" />
+					</f:facet>
+					<h:outputText value="#{rev[1].revisionDate}">
+						<f:convertDateTime type="both" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+		<p:panel header="Statistik">
+			<p:pieChart value="#{pieChart.data}" var="val"
+				categoryField=" #{val[0]}" dataField="#{val[1]}" />
+		</p:panel>
+	</h:panelGrid>
 
 	</body>
 </f:view>

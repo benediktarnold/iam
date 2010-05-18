@@ -5,17 +5,42 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 <f:view>
+	<f:metadata>
+		<f:viewParam name="magnet" value="#{pageController.currentMagnet}"
+			required="true" />
+		<f:viewParam name="rev" value="#{pageController.revisionNumber}" />
+		<f:event type="preRenderView" listener="#{pageController.initialize}" />
+	</f:metadata>
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="PRAGMA" content="NO-CACHE" />
+		<meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+		<meta http-equiv="EXPIRES" content="0" />
 		<title><h:outputText
-			value="#{pageController.current.title} - mfCampus Wiki" /></title>
+			value="#{pageController.liveVersion.title}" /><h:outputText
+			value="- Revision #{pageController.revisionNumber}"
+			rendered="#{pageController.historic}" /></title>
 	</h:head>
 	<body>
 	<h:messages />
-	<h:link outcome="index">Hauptseite</h:link>
-	<p:tabView id="tabPanel" binding="#{pageController.tabView}">
+	<p:breadCrumb style="width: 99%">
+		<p:menuitem label="Hauptseite">
+			<h:link outcome="index" />
+		</p:menuitem>
+		<p:menuitem>
+			<h:link outcome="page">
+				<h:outputText value="#{pageController.liveVersion.title}" />
+				<f:param name="magnet" value="#{pageController.currentMagnet}" />
+			</h:link>
+		</p:menuitem>
+		<p:menuitem label="Revision #{pageController.revisionNumber}" url="#"
+			rendered="#{param['rev'] != null}" />
+	</p:breadCrumb>
+	<br />
+	<p:tabView id="tabPanel" binding="#{pageController.tabView}"
+		activeIndex="#{pageController.activeIndex}">
 
-		<p:tab title="View" rendered="#{pageController.hasTitle()}">
+		<p:tab title="View" rendered="#{!pageController.new}">
 			<h1><h:outputText value="#{pageController.current.title}" /></h1>
 			<p><h:outputText value="#{pageController.current.content}"
 				escape="false" converter="brConverter" /></p>
@@ -28,48 +53,50 @@
 						style="width: 100%" />
 					<h:inputTextarea value="#{pageController.current.content}"
 						style="width: 100%" rows="20" />
-					<p:commandButton label="Update" action="#{pageController.save()}"
+					<h:commandButton action="#{pageController.save()}" value="Save" />
+					<!-- p:commandButton label="Update" action="#{pageController.save()}"
 						update=":tabPanel">
-						<f:param name="id" value="#{param['id']}" />
-					</p:commandButton>
+						<f:param name="magnet" value="#{pageController.current.magnet}" />
+					</p:commandButton -->
 				</h:panelGrid>
 			</h:form>
 		</p:tab>
 
-		<p:tab title="Änderungen" rendered="#{!pageController.historic}">
+		<p:tab title="Änderungen"
+			rendered="#{!pageController.revisions.isEmpty()}">
 			<h:form>
-				<h:dataTable var="rev" value="#{pageController.revisions}">
-					<h:column>
+				<p:dataTable var="rev" value="#{pageController.revisions}">
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Revision" />
 						</f:facet>
-						<h:link outcome="page">#{rev[1].id}
-							<f:param name="id" value="#{rev[0].id}" />
+						<h:outputLink value="page.jsf">#{rev[1].id}
+							<f:param name="magnet" value="#{rev[0].magnet}" />
 							<f:param name="rev" value="#{rev[1].id}" />
-						</h:link>
+						</h:outputLink>
 
-					</h:column>
-					<h:column>
+					</p:column>
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Titel" />
 						</f:facet>
 						<h:outputText value="#{rev[0].title}" />
-					</h:column>
-					<h:column>
+					</p:column>
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Datum" />
 						</f:facet>
 						<h:outputText value="#{rev[1].revisionDate}">
 							<f:convertDateTime type="both" />
 						</h:outputText>
-					</h:column>
-					<h:column>
+					</p:column>
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Änderung" />
 						</f:facet>
 						<h:outputText value="#{rev[2]}" />
-					</h:column>
-				</h:dataTable>
+					</p:column>
+				</p:dataTable>
 			</h:form>
 		</p:tab>
 	</p:tabView>
