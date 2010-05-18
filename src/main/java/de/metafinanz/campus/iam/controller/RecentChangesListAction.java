@@ -8,8 +8,6 @@ import javax.inject.Named;
 import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.metafinanz.campus.iam.entities.WikiPage;
-
 @Named("recentChanges")
 @Scope("request")
 public class RecentChangesListAction {

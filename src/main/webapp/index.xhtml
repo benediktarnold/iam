@@ -18,7 +18,7 @@
 	<h:dataTable var="rev" value="#{recentChanges.list}">
 		<h:column>
 			<h:link outcome="page">#{rev[0].id}
-				<f:param name="id" value="#{rev[0].id}" />
+				<f:param name="magnet" value="#{rev[0].magnet}" />
 			</h:link>
 		</h:column>
 		<h:column>

@@ -50,4 +50,11 @@ public class RevisionController {
 	public WikiPage getRevision(Long liveId, Integer rev) {
 		return getAuditReader().find(WikiPage.class, liveId, rev);
 	}
+
+	public WikiPage getRevision(String magnet, Integer rev) {
+		return (WikiPage) getAuditReader().createQuery().forRevisionsOfEntity(
+				WikiPage.class, true, true).add(
+				AuditEntity.revisionNumber().eq(rev)).add(
+				AuditEntity.property("magnet").eq(magnet)).getSingleResult();
+	}
 }

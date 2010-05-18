@@ -1,12 +1,14 @@
 package de.metafinanz.campus.iam.controller;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
@@ -19,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import de.metafinanz.campus.iam.entities.WikiPage;
 
 @Named("pageController")
-@Scope("request")
+@Scope("view")
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class WikiPageControllerBean implements Serializable {
 
@@ -33,48 +35,75 @@ public class WikiPageControllerBean implements Serializable {
 	private RevisionController revisionController;
 
 	private TabView tabView;
-	private List<?> queryForRevisions;
-	private Integer revision;
-	private Long currentId;
+	private List<?> queryForRevisions = new LinkedList<Object>();;
+	private Integer revisionNumber;
+	private String currentMagnet;
 
 	public WikiPageControllerBean() {
 		super();
 		this.log = Logger.getLogger(this.getClass());
 	}
 
-	@Value("#{request.getParameter('id')}")
-	public void setId(Long id) {
-		this.currentId = id;
+	public void setCurrentMagnet(String magnet) {
+		this.currentMagnet = magnet;
 	}
 
-	@Value("#{request.getParameter('rev')}")
-	public void setRev(Integer rev) {
-		this.revision = rev;
+	public String getCurrentMagnet() {
+		return currentMagnet;
 	}
 
-	@PostConstruct
+	public void setRevisionNumber(Integer rev) {
+		this.revisionNumber = rev;
+	}
+
+	public Integer getRevisionNumber() {
+		return revisionNumber;
+	}
+
 	public void initialize() {
-		if (isHistoric()) {
-			current = revisionController.getRevision(currentId, revision);
-		} else if (this.currentId != null) {
-			current = entityManager.find(WikiPage.class, currentId);
+		if (this.currentMagnet != null) {
+			if (isHistoric()) {
+				current = revisionController.getRevision(this.currentMagnet,
+						revisionNumber);
+			} else {
+				this.current = getWikiPage(this.currentMagnet);
+				if (current != null) {
+					initRevisionList();
+				}
+			}
+			if (this.current == null) {
+				this.current = new WikiPage(this.currentMagnet);
+			}
+			System.out.println("Init: " + current.toString());
+		}
+	}
+
+	private void initRevisionList() {
+		queryForRevisions = revisionController
+				.queryForRevisions(current);
+	}
+
+	private WikiPage getWikiPage(String magnet) {
+		try {
+			return (WikiPage) entityManager.createQuery(
+					"from WikiPage wp where wp.magnet=?").setParameter(1,
+					magnet).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
 		}
 	}
 
 	public boolean isHistoric() {
-		return this.currentId != null && this.revision != null;
-	}
-
-	public String newPage() {
-		log.info("WikiPageControllerBean.newPage()");
-		current = new WikiPage();
-		entityManager.persist(current);
-		return "page";
+		return this.currentMagnet != null && this.revisionNumber != null;
 	}
 
 	public String save() {
-		log.info("WikiPageControllerBean.save() " + current);
-		entityManager.merge(current);
+		if (current.getId() == null) {
+			entityManager.persist(current);
+		} else {
+			entityManager.merge(current);
+			initRevisionList();
+		}
 		tabView.setActiveIndex(0);
 		return "";
 	}
@@ -86,9 +115,16 @@ public class WikiPageControllerBean implements Serializable {
 	public boolean isInit() {
 		return current != null;
 	}
-	
-	public boolean hasTitle(){
-		return !current.getTitle().equals("");
+
+	public boolean isNew() {
+		return current.getId() == null;
+	}
+
+	public int getActiveIndex() {
+		if (isNew()) {
+			return 1;
+		} else
+			return 0;
 	}
 
 	@PersistenceContext
@@ -102,7 +138,7 @@ public class WikiPageControllerBean implements Serializable {
 	}
 
 	public List<?> getRevisions() {
-		return revisionController.queryForRevisions(current);
+		return queryForRevisions;
 	}
 
 	public void setTabView(TabView tabView) {
