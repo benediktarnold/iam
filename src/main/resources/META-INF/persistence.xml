@@ -23,7 +23,7 @@
 				value="org.hibernate.envers.event.AuditEventListener" />
 
 			<property name="org.hibernate.envers.versionsTableSuffix"
-				value="_V" />
+				value="_aud" />
 			<property name="org.hibernate.envers.revisionFieldName"
 				value="ver_rev" />
 		</properties>
